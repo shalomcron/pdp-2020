@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
+import {SessionService} from '../shared/session.service';
 
 @Component({
   selector: 'app-log-in',
@@ -9,8 +10,10 @@ import {Router} from '@angular/router';
 })
 export class LogInComponent implements OnInit {
   myForm: FormGroup;
+  loadDataOk = true;
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private sessionService: SessionService) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -23,6 +26,11 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['/personal-greeting']);
+    this.sessionService.setTz(this.myForm.get('tz').value).subscribe(loadDataOk => {
+      this.loadDataOk = loadDataOk;
+      if (loadDataOk) {
+        this.router.navigate(['/personal-greeting']);
+      }
+    });
   }
 }

@@ -3,5 +3,6 @@
     <label for="tz">Your Tz : </label>
     <input id="tz" type="text" formControlName="tz">
     <button type="submit">SUBMIT</button>
+    <div [class.err]="!loadDataOk"> loadDataOk : {{loadDataOk}}</div>
   </section>
 </form>

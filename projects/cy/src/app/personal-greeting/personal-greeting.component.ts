@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SessionService} from '../shared/session.service';
 
 @Component({
   selector: 'app-personal-greeting',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./personal-greeting.component.scss']
 })
 export class PersonalGreetingComponent implements OnInit {
+  public tz: string;
 
-  constructor() { }
+  constructor(private sessionService: SessionService) { }
 
   ngOnInit(): void {
+    this.tz = this.sessionService.geTz();
   }
 
 }
