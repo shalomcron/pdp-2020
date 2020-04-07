@@ -1,0 +1,7 @@
+<form [formGroup]="myForm" (submit)="onSubmit()">
+  <section class="flex-wrapper">
+    <label for="tz">Your Tz : </label>
+    <input id="tz" type="text" formControlName="tz">
+    <button type="submit">SUBMIT</button>
+  </section>
+</form>
