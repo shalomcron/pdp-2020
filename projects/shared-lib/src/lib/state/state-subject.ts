@@ -1,11 +1,11 @@
 import {BehaviorSubject, Subject} from 'rxjs';
 
 export class StateSubject<U> {
-  private data: BehaviorSubject<U>;
+  private readonly data: Subject<U>;
   private valueData: U;
 
   constructor(initData?: U) {
-    this.data = new BehaviorSubject<U>(initData);
+    this.data = initData ? new Subject() : new BehaviorSubject<U>(initData);
   }
 
   get data$(): Subject<U> {

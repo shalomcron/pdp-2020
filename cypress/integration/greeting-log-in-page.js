@@ -1,8 +1,7 @@
-
 before(() => {
 });
 
-beforeEach (() => {
+beforeEach(() => {
   cy.visit('http://localhost:4200/');
   cy.server();
 });
@@ -19,21 +18,34 @@ describe('Log-in page loading', () => {
 
 describe('Log-in page submit', () => {
   it('should submit incorrectly', () => {
-    cy.route({url: '/assets/json/users**', force404: true});
-    cy.get('#tz').clear().type('12');
+    // cy.route('/assets/json/users/**', {aa: 'AA'});
+    cy.route({
+      url: '/assets/json/users/**',
+      status: 404,
+      response: {},
+    });
+    cy.get('#tz').clear().type('123');
     cy.get('button[type=submit]').click();
     cy.url().should('contain', 'log-in');
     cy.get('div.load-data-msg').should('have.class', 'err-accrued');
   });
 
+  // it('should submit correctly', () => {
+  //   cy.fixture('userOk.json').as('userOk')
+  //   cy.route('/assets/json/users/**', '@userOk')
+  //   cy.get('#tz').clear().type(222);
+  //   cy.get('button[type=submit]').click();
+  //   // cy.url().should('contain', 'personal-greeting');
+  //   // cy.get('[data-test-id="name"]').should('contain', '@userOk');
+  // });
+
   it('should submit correctly', () => {
-    // cy.route('/assets/json/users/**', 'fixture:userOk.json').as('userOk');
     cy.fixture('userOk.json').then(userOk => {
       cy.route('/assets/json/users/**', userOk);
       cy.get('#tz').clear().type(userOk.tz);
       cy.get('button[type=submit]').click();
-      cy.url().should('contain', 'personal-greeting');
-      cy.get('[data-test-id="name"]').should('contain', userOk.name);
+      cy.url().should('contain', 'personal-menu');
+      cy.get('[data-test-id="user-name"]').should('contain', userOk.name);
     });
   });
 });
@@ -50,7 +62,7 @@ describe('Log-in page submit', () => {
 //     cy.get('.personal-greeting').should('be.visible')
 //   });
 //
-  // it('should personal greeting page display "MY_NAME" name', () => {
-  //   cy.get('h1.name').should('be.visible')
-  // });
+// it('should personal greeting page display "MY_NAME" name', () => {
+//   cy.get('h1.name').should('be.visible')
+// });
 // });

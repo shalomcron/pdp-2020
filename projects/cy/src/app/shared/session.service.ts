@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserModel} from './user-model';
-import {Observable, Subject} from 'rxjs';
 import {StateSubject} from 'shared-lib';
 
 @Injectable({
@@ -10,7 +9,7 @@ import {StateSubject} from 'shared-lib';
 export class SessionService {
   private tz: string;
   public user =  new StateSubject<UserModel>();
-  public isLoggedIn = new StateSubject<boolean>(false);
+  public isLoggedIn = new StateSubject<boolean>();
 
   constructor(private http: HttpClient) {
   }
@@ -29,7 +28,7 @@ export class SessionService {
           }
         },
         () => {
-          // obs.next(false);
+          this.isLoggedIn.update(false);
         });
   }
 }

@@ -1,22 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Router} from '@angular/router';
 import {SessionService} from '../shared/session.service';
 
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
-  styleUrls: ['./log-in.component.scss']
+  styleUrls: ['./log-in.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  /* changeDetection: ChangeDetectionStrategy.OnPush */
 })
 export class LogInComponent implements OnInit {
   myForm: FormGroup;
   loadDataOk = true;
 
-  constructor(private fb: FormBuilder, private router: Router, private sessionService: SessionService) {
+  constructor(private fb: FormBuilder, private sessionService: SessionService) {
   }
 
   ngOnInit(): void {
     this.initForm();
+    this.isLoggedInSubscribe();
   }
 
   private initForm() {
@@ -27,11 +29,14 @@ export class LogInComponent implements OnInit {
 
   onSubmit() {
     this.sessionService.logIn(this.myForm.get('tz').value);
-    // this.sessionService.setTz(this.myForm.get('tz').value).subscribe(loadDataOk => {
-    //   this.loadDataOk = loadDataOk;
-    //   if (loadDataOk) {
-    //     this.router.navigate(['/personal-greeting']);
-    //   }
-    // });
+  }
+
+  private isLoggedInSubscribe() {
+    this.sessionService.isLoggedIn.data$.subscribe(isOk => {
+      console.log('isLoggedInSubscribe isOk', isOk);
+      if (isOk !== undefined) {
+        this.loadDataOk = isOk;
+      }
+    });
   }
 }
