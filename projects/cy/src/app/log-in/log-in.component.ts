@@ -26,14 +26,12 @@ export class LogInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.sessionService.setTz(this.myForm.get('tz').value).subscribe(loadDataOk => {
-      this.loadDataOk = loadDataOk;
-      if (loadDataOk) {
-        this.router.navigate(['/personal-greeting']);
-      }
-    });
-
     this.sessionService.logIn(this.myForm.get('tz').value);
-
+    // this.sessionService.setTz(this.myForm.get('tz').value).subscribe(loadDataOk => {
+    //   this.loadDataOk = loadDataOk;
+    //   if (loadDataOk) {
+    //     this.router.navigate(['/personal-greeting']);
+    //   }
+    // });
   }
 }

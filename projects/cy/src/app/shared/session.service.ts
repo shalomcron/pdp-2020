@@ -9,7 +9,7 @@ import {StateSubject} from 'shared-lib';
 })
 export class SessionService {
   private tz: string;
-  private user: UserModel;
+  public user =  new StateSubject<UserModel>();
   public isLoggedIn = new StateSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
@@ -20,32 +20,16 @@ export class SessionService {
     return this.loadTzData();
   }
 
-  setTz(tz: string): Observable<boolean> {
-    this.tz = tz;
-    return this.loadTzData();
-  }
-
-  geTz(): string {
-    return this.tz;
-  }
-
-  geName(): string {
-    return this.user ? this.user.name : 'nullll';
-  }
-
-  private loadTzData(): Observable<boolean> {
-    const obs = new Subject<boolean>();
+  private loadTzData() {
     this.http.get(`/../assets/json/users/${this.tz}.json`)
-      .subscribe(user => {
-          this.user = new UserModel(user);
-          if (this.tz === this.user.tz) {
-            obs.next(true);
+      .subscribe((user: UserModel)  => {
+          if (this.tz === user.tz) {
+            this.user.update(new UserModel(user));
             this.isLoggedIn.update(true);
           }
         },
         () => {
-          obs.next(false);
+          // obs.next(false);
         });
-    return obs;
   }
 }

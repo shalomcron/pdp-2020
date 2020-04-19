@@ -1,9 +1,3 @@
-<section class="flex-wrapper personal-greeting">
-<!--  *ngIf="tz"-->
-
-  <div>isLogedIn: {{sessionService.isLoggedIn.data$ | async}}</div>
-
-  <p>Login - OK! TZ: {{tz}}</p>
-  <p>WelCome <span data-test-id="name">{{name}}</span></p>
-
+<section class="flex-wrapper personal-greeting" *ngIf="sessionService.isLoggedIn.data$ |async as isLoggedIn">
+  <h1>Well Come !!! {{(sessionService.user.data$ | async)?.name}}</h1>
 </section>
