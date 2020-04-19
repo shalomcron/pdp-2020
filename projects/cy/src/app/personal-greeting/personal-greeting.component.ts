@@ -10,7 +10,7 @@ export class PersonalGreetingComponent implements OnInit {
   public tz: string;
   public name: string;
 
-  constructor(private sessionService: SessionService) { }
+  constructor(public sessionService: SessionService) { }
 
   ngOnInit(): void {
     this.tz = this.sessionService.geTz();

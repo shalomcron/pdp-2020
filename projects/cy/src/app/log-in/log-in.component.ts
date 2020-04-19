@@ -32,5 +32,8 @@ export class LogInComponent implements OnInit {
         this.router.navigate(['/personal-greeting']);
       }
     });
+
+    this.sessionService.logIn(this.myForm.get('tz').value);
+
   }
 }

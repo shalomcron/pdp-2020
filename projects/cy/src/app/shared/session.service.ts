@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {UserModel} from './user-model';
 import {Observable, Subject} from 'rxjs';
+import {StateSubject} from 'shared-lib';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,14 @@ import {Observable, Subject} from 'rxjs';
 export class SessionService {
   private tz: string;
   private user: UserModel;
+  public isLoggedIn = new StateSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
+  }
+
+  logIn(tz: string) {
+    this.tz = tz;
+    return this.loadTzData();
   }
 
   setTz(tz: string): Observable<boolean> {
@@ -33,6 +40,7 @@ export class SessionService {
           this.user = new UserModel(user);
           if (this.tz === this.user.tz) {
             obs.next(true);
+            this.isLoggedIn.update(true);
           }
         },
         () => {
