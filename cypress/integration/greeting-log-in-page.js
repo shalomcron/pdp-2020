@@ -1,9 +1,7 @@
-const tzOk = '111';
-const tzWrong = '666';
-let i = 0;
 
 before(() => {
 });
+
 beforeEach (() => {
   cy.visit('http://localhost:4200/');
   cy.server();
@@ -20,27 +18,25 @@ describe('Log-in page loading', () => {
 });
 
 describe('Log-in page submit', () => {
-  it('should submit correctly', () => {
-    cy.route('/assets/json/users/' + tzOk + '**', 'fixture:userOk.json');
-    cy.get('#tz').clear().type(tzOk);
-    cy.get('button[type=submit]').click();
-    cy.url().should('contain', 'personal-greeting');
-  });
   it('should submit incorrectly', () => {
-    cy.route({url: '/assets/json/users/' + tzWrong + '**', force404: true});
-    cy.get('#tz').clear().type(tzWrong);
+    cy.route({url: '/assets/json/users**', force404: true});
+    cy.get('#tz').clear().type('12');
     cy.get('button[type=submit]').click();
     cy.url().should('contain', 'log-in');
     cy.get('div.load-data-msg').should('have.class', 'err-accrued');
   });
+
+  it('should submit correctly', () => {
+    // cy.route('/assets/json/users/**', 'fixture:userOk.json').as('userOk');
+    cy.fixture('userOk.json').then(userOk => {
+      cy.route('/assets/json/users/**', userOk);
+      cy.get('#tz').clear().type(userOk.tz);
+      cy.get('button[type=submit]').click();
+      cy.url().should('contain', 'personal-greeting');
+      cy.get('[data-test-id="name"]').should('contain', userOk.name);
+    });
+  });
 });
-// cy.route('/personal-greeting**', 'fixture:userOk.json');
-// cy.server({
-//   method: 'POST',
-//   delay: 1000,
-//   status: 422,
-//   response: {}
-// })
 
 // cy.route('/users/', { errors: 'Name cannot be blank' })
 // describe('personal greeting page', () => {

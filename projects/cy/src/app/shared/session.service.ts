@@ -22,12 +22,18 @@ export class SessionService {
     return this.tz;
   }
 
+  geName(): string {
+    return this.user ? this.user.name : 'nullll';
+  }
+
   private loadTzData(): Observable<boolean> {
     const obs = new Subject<boolean>();
     this.http.get(`/../assets/json/users/${this.tz}.json`)
       .subscribe(user => {
           this.user = new UserModel(user);
-          obs.next(true);
+          if (this.tz === this.user.tz) {
+            obs.next(true);
+          }
         },
         () => {
           obs.next(false);
