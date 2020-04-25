@@ -33,7 +33,6 @@ export class LogInComponent implements OnInit {
 
   private isLoggedInSubscribe() {
     this.sessionService.isLoggedIn.data$.subscribe(isOk => {
-      console.log('isLoggedInSubscribe isOk', isOk);
       if (isOk !== undefined) {
         this.loadDataOk = isOk;
       }
