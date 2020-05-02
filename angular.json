@@ -149,7 +149,8 @@
               "projects/cy/src/assets"
             ],
             "styles": [
-              "projects/cy/src/styles.scss"
+              "projects/cy/src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },

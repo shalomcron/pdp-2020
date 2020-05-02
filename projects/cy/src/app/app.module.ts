@@ -7,12 +7,14 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { LogInComponent } from './log-in/log-in.component';
 import { PersonalGreetingComponent } from './personal-greeting/personal-greeting.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogInComponent,
-    PersonalGreetingComponent
+    PersonalGreetingComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

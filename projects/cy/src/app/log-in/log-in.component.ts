@@ -11,7 +11,7 @@ import {SessionService} from '../shared/session.service';
 })
 export class LogInComponent implements OnInit {
   myForm: FormGroup;
-  loadDataOk = true;
+  isLoginOK = false;
 
   constructor(private fb: FormBuilder, private sessionService: SessionService) {
   }
@@ -34,7 +34,7 @@ export class LogInComponent implements OnInit {
   private isLoggedInSubscribe() {
     this.sessionService.isLoggedIn.data$.subscribe(isOk => {
       if (isOk !== undefined) {
-        this.loadDataOk = isOk;
+        this.isLoginOK = isOk;
       }
     });
   }
