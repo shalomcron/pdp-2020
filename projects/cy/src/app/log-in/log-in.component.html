@@ -5,7 +5,7 @@
       <label for="tz">Your Tz : </label>
       <input id="tz" type="text" formControlName="tz">
       <button type="submit">SUBMIT</button>
-      <span class="load-data-msg" [class.err-accrued]="!isLoginOK"> isLoginOK: {{isLoginOK}}</span>
+      <span data-cy="load-data-msg" [class.err-accrued]="!isLoginOK"> isLoginOK: {{isLoginOK}}</span>
     </div>
   </section>
 </form>
