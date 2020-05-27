@@ -22,10 +22,8 @@ export class ArticleStoreService {
   }
 
   addArticle(value: Article) {
-    // articleService.getArticles().subscribe((articles: Articles) => {
-    //   console.log('articles  --', articles);
-    //   this.$articles.update(articles);
-    // });
-    this.$articles.value.articles.push(value);
+    this.articleService.addArticle(value).subscribe((isOk: boolean) => {
+      this.$articles.value.articles.push(value);
+    });
   }
 }
