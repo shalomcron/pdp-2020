@@ -1,0 +1,22 @@
+app-add-article {
+  form {
+    width: 100%;
+    label {
+      margin: 0 3px 0 7px;
+    }
+    input{
+      margin: 1px 6px;
+      &#description {
+        min-width: 300px;
+      }
+      &#url {
+        min-width: 300px;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      margin: 1px 5px;
+    }
+  }
+}

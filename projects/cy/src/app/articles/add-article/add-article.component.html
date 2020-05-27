@@ -1,4 +1,21 @@
 <section class="flex-wrapper">
   <form [formGroup]="myForm" (submit)="onSubmit()">
+    <div>
+      <label for="description">desc</label>
+      <input type="text" id="description" formControlName="description">
+      <label for="url">url</label>
+      <input type="text" id="url" formControlName="url">
+      <label for="subject">subject</label>
+      <input type="text" id="subject" formControlName="subject">
+      <button (click)="addRow()"> Add Row </button>
+    </div>
+    <div formArrayName="body">
+      <label>HTML</label>
+        <ng-container *ngFor="let alias of bodyArray.controls; let i=index">
+          <textarea type="text" [formControlName]="i"></textarea>
+        </ng-container>
+    </div>
+
+    <button type="submit">Submit</button>
   </form>
 </section>
