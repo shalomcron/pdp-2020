@@ -1,9 +1,12 @@
-## AngularNineApp
-### Development server
+### AngularNineApp
+#### Development server
 d:
 cd D:\ANGULAR9\multi-apps & ng serve cy -o 
+#### cypress
+d: 
+cd D:\ANGULAR9\multi-apps & npm rum cypress <br>
 
-<br><br>
+#### cli
+ng g m list --project=cy --routing --d
 
-### cypress
-d: <br> cd D:\ANGULAR9\multi-apps & npm rum cypress <br>
+ng g c --h list --project=cy --routing --d
