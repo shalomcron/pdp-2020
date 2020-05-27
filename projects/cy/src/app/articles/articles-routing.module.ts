@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {ArticlesComponent} from './articles.component';
-import {ListComponent} from './list/list.component';
+import {AddArticleComponent} from './add-article/add-article.component';
 
 
 const routes: Routes = [
   // { path: '', redirectTo: 'lobby', pathMatch: 'full'},
   { path: '', component: ArticlesComponent},
-  { path: 'list', component: ListComponent},
-  { path: '**', component: ListComponent},
+  { path: 'addArticle', component: AddArticleComponent},
 ];
 
 @NgModule({

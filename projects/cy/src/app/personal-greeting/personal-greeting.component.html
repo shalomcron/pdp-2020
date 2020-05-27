@@ -1,4 +1,6 @@
-<section class="flex-wrapper personal-greeting" *ngIf="sessionService.isLoggedIn.data$ |async as isLoggedIn">
-  <h1 data-greeting="user-name">Well Come !!! {{(sessionService.user.data$ | async)?.name}}</h1>
+<section class="flex-wrapper personal-greeting">
+  <ng-container *ngIf="sessionService.isLoggedIn.data$ |async as isLoggedIn">
+    <h1 data-greeting="user-name">Well Come !!! {{(sessionService.user.data$ | async)?.name}}</h1>
+  </ng-container>
   <app-menu></app-menu>
-</section>=
+</section>

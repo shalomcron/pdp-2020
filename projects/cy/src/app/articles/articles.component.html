@@ -1,4 +1,12 @@
 <section class="flex-wrapper">
-  <a routerLink="list">List</a>
+  <table *ngIf="articleStore.$articles.data$ | async as articles">
+    <tr>
+      <th>subject</th>
+      <th>description</th>
+    </tr>
+    <tr *ngFor="let article of articles.articles">
+      <td>{{article.subject}}</td>
+      <td>{{article.description}}</td>
+    </tr>
+  </table>
 </section>
-
