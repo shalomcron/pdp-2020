@@ -10,3 +10,5 @@ cd D:\ANGULAR9\multi-apps & npm rum cypress <br>
 ng g m list --project=cy --routing --d
 
 ng g c --h list --project=cy --routing --d
+
+ng add @ng-bootstrap/ng-bootstrap --project cy

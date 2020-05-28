@@ -8,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LogInComponent } from './log-in/log-in.component';
 import { PersonalGreetingComponent } from './personal-greeting/personal-greeting.component';
 import { MenuComponent } from './menu/menu.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MenuComponent } from './menu/menu.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

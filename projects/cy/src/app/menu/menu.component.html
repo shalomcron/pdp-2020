@@ -1,12 +1,23 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand">Menu</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a routerLink="/articles">Articles</a></li>
-      <li class="active"><a routerLink="/articles/addArticle"> Add Article </a></li>
-<!--      <li class="active"><a routerLink="/"> </a></li>-->
-    </ul>
-  </div>
-</nav>
+
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
+    <a ngbNavLink>Articles</a>
+    <ng-template ngbNavContent>
+        <ul class="nav navbar-nav">
+          <li class="active"><a routerLink="/articles">Articles</a></li>
+          <li class="active"><a routerLink="/articles/addArticle"> Add Article </a></li>
+        </ul>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>Subjects</a>
+    <ng-template ngbNavContent>
+      <ul class="nav navbar-nav">
+        <li class="active"><a routerLink="/articles">Subjects</a></li>
+        <li class="active"><a routerLink="/articles/addArticle"> Add Subject </a></li>
+      </ul>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav"></div>
+
